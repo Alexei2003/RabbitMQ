@@ -1,0 +1,3 @@
+D:\WPS\Этот сем\Доклад\Send\Get\bin\Release\net8.0\publish\win-x64\Get.pdb
+D:\WPS\Этот сем\Доклад\Send\Get\bin\Release\net8.0\publish\win-x64\RabbitMQ.pdb
+D:\WPS\Этот сем\Доклад\Send\Get\bin\Release\net8.0\publish\win-x64\Get.exe
