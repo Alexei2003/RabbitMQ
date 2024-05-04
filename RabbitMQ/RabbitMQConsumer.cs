@@ -42,17 +42,26 @@
         // Метод для получения сообщения из очереди RabbitMQ
         public string GetMessage()
         {
-            // Получение сообщения из очереди
-            BasicGetResult result = _channel.BasicGet(queue: _queueName, autoAck: true);
-
-            // Если сообщение получено успешно, возвращаем его в виде строки
-            if (result != null)
+            BasicGetResult result = null;
+            while (result == null)
             {
-                return Encoding.UTF8.GetString(result.Body.ToArray());
-            }
+                // Получение сообщения из очереди
+                result = _channel.BasicGet(queue: _queueName, autoAck: true);
 
-            // Если сообщение не получено, возвращаем null
+                // Если сообщение получено успешно, возвращаем его в виде строки
+                if (result != null)
+                {
+                    return Encoding.UTF8.GetString(result.Body.ToArray());
+                }
+                Thread.Sleep(1000);
+            }
             return null;
+        }
+
+        // Метод для удаления очереди
+        public void DeleteQueue()
+        {
+            _channel.QueueDelete(queue: _queueName);
         }
 
         // Метод для закрытия соединения с RabbitMQ

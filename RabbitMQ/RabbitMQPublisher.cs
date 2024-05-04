@@ -54,6 +54,12 @@ namespace RabbitMQ
 
         }
 
+        // Метод для удаления очереди
+        public void DeleteQueue()
+        {
+            _channel.QueueDelete(queue: _queueName);
+        }
+
         // Метод для закрытия соединения с RabbitMQ
         public void CloseConnection()
         {
